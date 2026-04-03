@@ -9,6 +9,8 @@ const TIMINGS = [
     showLength: 5,
     isIncluded: false,
     image: null,
+    prepareVoice: null,
+    warningVoice: null,
   },
   {
     id: 2,
@@ -20,6 +22,8 @@ const TIMINGS = [
     showLength: 5,
     isIncluded: true,
     image: "/img/water_rune.png",
+    prepareVoice: "/audio/prepare_rune.mp3",
+    warningVoice: "/audio/warning_rune.mp3",
   },
   {
     id: 3,
@@ -31,6 +35,8 @@ const TIMINGS = [
     showLength: 5,
     isIncluded: true,
     image: "/img/power_rune.png",
+    prepareVoice: "/audio/prepare_rune.mp3",
+    warningVoice: "/audio/warning_rune.mp3",
   },
   {
     id: 4,
@@ -42,6 +48,8 @@ const TIMINGS = [
     showLength: 5,
     isIncluded: true,
     image: "/img/lotus.png",
+    prepareVoice: "/audio/prepare_lotus.mp3",
+    warningVoice: "/audio/warning_lotus.mp3",
   },
   {
     id: 5,
@@ -53,6 +61,8 @@ const TIMINGS = [
     showLength: 5,
     isIncluded: true,
     image: "/img/wisdom.png",
+    prepareVoice: "/audio/prepare_wisdom.mp3",
+    warningVoice: "/audio/warning_wisdom.mp3",
   },
   {
     id: 6,
@@ -64,6 +74,8 @@ const TIMINGS = [
     showLength: 5,
     isIncluded: true,
     image: "/img/bounty_rune.png",
+    prepareVoice: "/audio/prepare_rune.mp3",
+    warningVoice: "/audio/warning_rune.mp3",
   },
   {
     id: 7,
@@ -75,6 +87,8 @@ const TIMINGS = [
     showLength: 5,
     isIncluded: false,
     image: "/img/creeps.png",
+    prepareVoice: "/audio/prepare_creeps.mp3",
+    warningVoice: "/audio/warning_creeps.mp3",
   },
   {
     id: 8,
@@ -86,6 +100,8 @@ const TIMINGS = [
     showLength: 5,
     isIncluded: true,
     image: "/img/creeps.png",
+    prepareVoice: "/audio/prepare_creeps.mp3",
+    warningVoice: "/audio/warning_creeps.mp3",
   },
   {
     id: 9,
@@ -97,6 +113,8 @@ const TIMINGS = [
     showLength: 5,
     isIncluded: true,
     image: "/img/tormentor.png",
+    prepareVoice: "/audio/prepare_tormentor.mp3",
+    warningVoice: "/audio/warning_tormentor.mp3",
   },
 ];
 

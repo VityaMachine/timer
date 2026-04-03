@@ -41,7 +41,7 @@
 }
 
 .dataContainer {
-  width: 100%;
+  /* width: 100%; */
   margin: 10px;
 
   /* border: 1px solid black; */
@@ -81,4 +81,8 @@
 
 .warningCardText {
   color: red;
+}
+
+.timingCardText {
+  color: forestgreen;
 }
