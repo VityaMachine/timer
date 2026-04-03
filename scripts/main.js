@@ -10,7 +10,7 @@ const resetBtn = document.querySelector("#resetBtn");
 const displayedTimeText = document.querySelector("#displayedTime");
 const dataContainer = document.querySelector(".dataContainer");
 
-const DEFAULT_TIMEOUT = -20;
+const DEFAULT_TIMEOUT = -60;
 
 // console.dir(dataContainer);
 
