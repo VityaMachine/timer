@@ -105,11 +105,11 @@ function startGame() {
     }
 
     const prepareAudioMarkup = activeVoiceObj.prepareSecond
-      ? `<audio src="${activeVoiceObj.prepareVoice}" autoplay></audio>`
+      ? `<audio src="https://vityamachine.github.io/timer${activeVoiceObj.prepareVoice}" autoplay></audio>`
       : "";
 
     const warningAudioMarkup = activeVoiceObj.warningSeconds
-      ? `<audio src="${activeVoiceObj.warningVoice}" autoplay></audio>`
+      ? `<audio src="https://vityamachine.github.io/timer${activeVoiceObj.warningVoice}" autoplay></audio>`
       : "";
 
     const audioMarkup = prepareAudioMarkup + warningAudioMarkup;

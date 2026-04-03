@@ -3,7 +3,7 @@ const cardCreator = (image, title, timing, status) => `<div class="eventCard">
             
             <img
               class="eventImg"
-              src="${image}"
+              src="https://vityamachine.github.io/timer${image}"
               alt="${title}"
             />
           </div>
