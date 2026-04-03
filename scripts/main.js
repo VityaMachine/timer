@@ -24,7 +24,8 @@ const firstTimingsArray = TIMINGS.filter((el) => el.isIncluded).map((el) => ({
   nextTiming: el.startTiming,
   deleteFromArrTiming: el.startTiming + el.showLength,
 }));
-const activeEventsArr = [];
+
+let sessionEventsArray = [...firstTimingsArray];
 
 console.log(firstTimingsArray);
 
@@ -43,25 +44,47 @@ function startGame() {
 
     let eventsArr = [];
 
-    const eventsPrepareArray = firstTimingsArray
+    const eventsPrepareArray = sessionEventsArray
       .filter(
         (el) =>
           gameSecond >= el.nextPrepareTiming &&
           gameSecond < el.nextWarningTiming,
       )
       .map((el) => ({ ...el, status: STATUS.PREPARE }));
-    const eventsWarningArray = firstTimingsArray
+    const eventsWarningArray = sessionEventsArray
       .filter(
         (el) =>
           gameSecond >= el.nextWarningTiming && gameSecond < el.nextTiming,
       )
       .map((el) => ({ ...el, status: STATUS.WARNING }));
-    const eventTimingArray = firstTimingsArray
+    const eventTimingArray = sessionEventsArray
       .filter(
         (el) =>
           gameSecond >= el.nextTiming && gameSecond <= el.deleteFromArrTiming,
       )
       .map((el) => ({ ...el, status: STATUS.TIMING }));
+
+    const newSessionArray = sessionEventsArray.map((el) => ({
+      ...el,
+      nextPrepareTiming:
+        gameSecond > el.deleteFromArrTiming
+          ? el.nextPrepareTiming + el.period
+          : el.nextPrepareTiming,
+      nextWarningTiming:
+        gameSecond > el.deleteFromArrTiming
+          ? el.nextWarningTiming + el.period
+          : el.nextWarningTiming,
+      nextTiming:
+        gameSecond > el.deleteFromArrTiming
+          ? el.nextTiming + el.period
+          : el.nextTiming,
+      deleteFromArrTiming:
+        gameSecond > el.deleteFromArrTiming
+          ? el.deleteFromArrTiming + el.period
+          : el.deleteFromArrTiming,
+    }));
+
+    sessionEventsArray = newSessionArray;
 
     eventsArr = [
       ...eventsPrepareArray,
@@ -69,8 +92,14 @@ function startGame() {
       ...eventTimingArray,
     ];
 
-    console.log(`Second ${gameSecond}`);
-    console.log(eventsArr);
+    if (eventsArr.length === 0) {
+      console.log(`Second ${gameSecond}`);
+      console.log(sessionEventsArray);
+    } else {
+      console.log(`Second ${gameSecond}`);
+      console.log(sessionEventsArray);
+      console.log(eventsArr);
+    }
 
     startBtn.disabled = true;
     stopBtn.disabled = false;
