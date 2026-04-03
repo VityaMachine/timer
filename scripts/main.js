@@ -10,7 +10,7 @@ const resetBtn = document.querySelector("#resetBtn");
 const displayedTimeText = document.querySelector("#displayedTime");
 
 const DEFAULT_TIMEOUT = -30;
-const STATUSES = { PREPARE: "prepare", WARNING: "warning" };
+const STATUS = { PREPARE: "prepare", WARNING: "warning", TIMING: "timing" };
 
 let timeText;
 let mainTimer;
@@ -21,6 +21,7 @@ const firstTimingsArray = TIMINGS.filter((el) => el.isIncluded).map((el) => ({
   ...el,
   nextPrepareTiming: el.startTiming - el.warningSeconds - el.prepareSeconds,
   nextWarningTiming: el.startTiming - el.warningSeconds,
+  nextTiming: el.startTiming,
   deleteFromArrTiming: el.startTiming + el.showLength,
 }));
 const activeEventsArr = [];
@@ -40,24 +41,36 @@ function startGame() {
 
     // console.log(gameSecond);
 
-    const eventsArray = firstTimingsArray.filter((el) => {
-      if (gameSecond >= el.nextPrepareTiming) {
-        return el;
-      }
-    });
+    let eventsArr = [];
+
+    const eventsPrepareArray = firstTimingsArray
+      .filter(
+        (el) =>
+          gameSecond >= el.nextPrepareTiming &&
+          gameSecond < el.nextWarningTiming,
+      )
+      .map((el) => ({ ...el, status: STATUS.PREPARE }));
+    const eventsWarningArray = firstTimingsArray
+      .filter(
+        (el) =>
+          gameSecond >= el.nextWarningTiming && gameSecond < el.nextTiming,
+      )
+      .map((el) => ({ ...el, status: STATUS.WARNING }));
+    const eventTimingArray = firstTimingsArray
+      .filter(
+        (el) =>
+          gameSecond >= el.nextTiming && gameSecond <= el.deleteFromArrTiming,
+      )
+      .map((el) => ({ ...el, status: STATUS.TIMING }));
+
+    eventsArr = [
+      ...eventsPrepareArray,
+      ...eventsWarningArray,
+      ...eventTimingArray,
+    ];
 
     console.log(`Second ${gameSecond}`);
-    console.log(eventsArray);
-
-    /*
-
-
-
-     body logic
-     
-    */
-
-    // console.log(mainTimer);
+    console.log(eventsArr);
 
     startBtn.disabled = true;
     stopBtn.disabled = false;
